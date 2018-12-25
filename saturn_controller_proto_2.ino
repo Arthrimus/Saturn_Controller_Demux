@@ -1,14 +1,14 @@
 /* Saturn Controller Demux
  * ------------------ 
  * This sketch is designed to demux Sega Saturn gamepad
- * signals into descrete outputs for use with arcade 
+ * signals into discrete outputs for use with arcade 
  * PCBs. 
  * 
  * There are two select lines, four data input lines, and
- * 13 descrete outputs. The controlls can be remapped by 
+ * 13 discrete outputs. The controlls can be remapped by 
  * changing the pin assignments below.
  * 
- * Appollogies for the sloppy code. It took a lot of trial and error
+ * Apologies for the sloppy code. It took a lot of trial and error
  * to get all the timings right for MC Cthulu boards to work properly
  * I tried to clean it up as much as I could.
  * 

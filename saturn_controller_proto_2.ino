@@ -62,7 +62,7 @@ void setup() {
 void loop(){
   
   {                             // This is the start of the first bit of the demuxer, there are four of these
-  delay(5);
+  delay(5);                   // This sets the timing of the select pulses (default 5 = 100hz)
   digitalWrite(S1, LOW);
   digitalWrite(S0, HIGH); // Sets the select lines S0 HIGH, S1 LOW
  

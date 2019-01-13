@@ -1,11 +1,11 @@
- /* Saturn Controller Demux
+/* Saturn Controller Demux
  * ------------------ 
  * This sketch is designed to demux Sega Saturn gamepad
  * signals into descrete outputs for use with arcade 
  * PCBs. 
  * 
  * There are two select lines, four data input lines, and
- * 13 discrete outputs. The controlls can be remapped by 
+ * 13 descrete outputs. The controlls can be remapped by 
  * changing the pin assignments below.
  * 
  * Appollogies for the sloppy code. It took a lot of trial and error
@@ -20,21 +20,21 @@ int UP = 13; // These choose the pins for the button outputs. (Change these
 int DN = 12; // if you wish to remap the buttons.)
 int LT = 11;
 int RT = 10;
-int A = 6;
-int B = 1;
-int C = 4;
-int X = 8;
-int Y = 2;
-int Z = 7;
+int A = 9;
+int B = 8;
+int C = 7;
+int X = 6;
+int Y = 5;
+int Z = 4;
 int L = 3;
-int R = 9;
-int ST = 5;   
-int D0 = 15;  // choose the input pins for the digital lines (Probably don't change these)
-int D1 = 14;
-int D2 = 19;
-int D3 = 18;
-int S0 = 16; // Chooses the output pins for the select lines (Probably don't change these either)
-int S1 = 17;
+int R = 2;
+int ST = 1;   
+int D0 = 16;  // choose the input pins for the digital lines (Probably don't change these)
+int D1 = 17;
+int D2 = 18;
+int D3 = 19;
+int S0 = 14; // Chooses the output pins for the select lines (Probably don't change these either)
+int S1 = 15;
 int val = 0;     // variable for reading the pin status (should be zero)
 
 void setup() {

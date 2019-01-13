@@ -1,14 +1,14 @@
 /* Saturn Controller Demux
  * ------------------ 
  * This sketch is designed to demux Sega Saturn gamepad
- * signals into descrete outputs for use with arcade 
+ * signals into discrete outputs for use with arcade 
  * PCBs. 
  * 
  * There are two select lines, four data input lines, and
  * 13 discrete outputs. The controlls can be remapped by 
  * changing the pin assignments below.
  * 
- * Appollogies for the sloppy code. It took a lot of trial and error
+ * Apologies for the sloppy code. It took a lot of trial and error
  * to get all the timings right for MC Cthulu boards to work properly
  * I tried to clean it up as much as I could.
  * 
@@ -62,7 +62,7 @@ void setup() {
 void loop(){
   
   {                             // This is the start of the first bit of the demuxer, there are four of these
-  delay(5);
+  delay(5);                   // This sets the timing of the select pulses (default 5 = 100hz)
   digitalWrite(S1, LOW);
   digitalWrite(S0, HIGH); // Sets the select lines S0 HIGH, S1 LOW
  

@@ -1,4 +1,4 @@
-# Sega Saturn Crontroller input demux to discrete outputs.
+# Sega Saturn Crontroller Input Demultiplexed to Discrete Outputs.
 
 This is an Arduino sketch for demultiplexing Saturn controller inputs to discrete outputs. I desinged it for Arcade Supergun use but it could be adapted for use in many other control applications that require discrete outputs.
 

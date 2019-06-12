@@ -8,4 +8,4 @@ The upload the .ino file to an Arduino Uno or similar compatible device and conn
 
 # Custom PCB Info.
 
-I have designed several prototype PCBs for this project. Currently they are available as Saturn to DB15 adapters. They use the same DB15 pinout as Undamned's DB15 USB Decoders. You can order the most current version from <a href="https://oshpark.com/shared_projects/zJHBbcfL">Oshpark</a>
+I have designed several prototype PCBs for this project. Currently they are available as Saturn to DB15 adapters. They use the same DB15 pinout as Undamned's DB15 USB Decoders. You can order the most current version from <a href="https://oshpark.com/shared_projects/R8kkCrLz">Oshpark</a>

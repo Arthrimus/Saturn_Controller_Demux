@@ -4,7 +4,7 @@ This is an Arduino sketch for demultiplexing Saturn controller inputs to discret
 
 # Instructions
 
-The upload the .ino file to an Arduino Uno or similar compatible device and connect the I/O pins according to the layout described in the .ino file. If you wish to remap the buttons you can modify the pin selections in the file to suit your needs. 
+The upload the .ino file to an Arduino Uno or similar compatible device and connect the I/O pins according to the layout described in the .ino file. If you wish to remap the buttons you can modify the pin selections in the file to suit your needs. There are 2 versions uploaded here v0.1 and v0.6. V0.1 is configured correctly to match the pinout of my original V0.1-V0.3 boards. I reworked the board layout at v0.4 onward so if you have board revision V0.4 or newer you should use the V0.6 code.
 
 # Custom PCB Info.
 

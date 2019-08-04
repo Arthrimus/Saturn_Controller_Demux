@@ -16,19 +16,19 @@
  *
  */
 
-int UP = 13; // These choose the pins for the button outputs. (Change these
-int DN = 12; // if you wish to remap the buttons.)
-int LT = 11;
-int RT = 10;
-int A = 6;
-int B = 1;
-int C = 4;
-int X = 9;
+int UP = 1; // These choose the pins for the button outputs. (Change these
+int DN = 4; // if you wish to remap the buttons.)
+int LT = 5;
+int RT = 6;
+int A = 10;
+int B = 13;
+int C = 12;
+int X = 7;
 int Y = 8;
-int Z = 7;
-int L = 3;
-int R = 2;
-int ST = 5;   
+int Z = 9;
+int L = 0;
+int R = 3;
+int ST = 11;   
 int D0 = 15;  // choose the input pins for the digital lines (Probably don't change these)
 int D1 = 14;
 int D2 = 19;

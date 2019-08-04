@@ -42,7 +42,6 @@ int S1 = 17;
 int val = 0;                     // variable for reading the pin status (should be zero)
 int outputb = 0;                 // variable for storing PORTB output values.
 int outputd = 0;                 // variable for storing PORTD output values.
-int outputc = 0;
 int buttonmap = 0;               // variable for storing which buttonmap is used for outputs, 0 = sixbuttonmode.
 
 
@@ -53,10 +52,6 @@ void setup() {
   pinMode(D3, INPUT_PULLUP);
   pinMode(S0, OUTPUT);           // Declare Select Pins as outputs.
   pinMode(S1, OUTPUT);
-
-  demuxpad();
-  
-//  delay(1000);                    // Gives the controller time to start up.
  }
 
 
@@ -156,12 +151,9 @@ SL = 0;
 
   
   {                             // This is the start of the first bit of the demuxer, there are four of these
-  outputc = 0;
   delay(1);
   digitalWrite(S1, LOW);
   digitalWrite(S0, HIGH);       // Sets the select lines S0 HIGH, S1 LOW
- // outputc |= 16;   
- // DDRC = outputc;
   
   }
   val = digitalRead(D0);        // read input value from data line

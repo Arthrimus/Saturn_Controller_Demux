@@ -10,7 +10,7 @@ The upload the .ino file to an Arduino Uno or similar compatible device and conn
 
   These values are hard coded and cannot be easily changed. This is because the code uses direct port maniplulation to set the button outputs to open drain when not pressed. This is a safety feature.
 
-**Button Outputs
+**Button Outputs**
   - UP    = 1
   - L     = 2
   - R     = 3
@@ -25,13 +25,13 @@ The upload the .ino file to an Arduino Uno or similar compatible device and conn
   - B     = 13
   - C     = 12
 
-**Digital Inputs
+**Digital Inputs**
 - D1    = 14
 - D0    = 15
 - D3    = 18
 - D2    = 19
 
-**Select Outputs
+**Select Outputs**
 - S0    = 16
 - S1    = 17
 
@@ -40,8 +40,8 @@ The upload the .ino file to an Arduino Uno or similar compatible device and conn
 There are currently two buttonmap options. Six Button mode is standard operation. X,Y,Z are mapped to P1,P2,P3 and A,B,C are mapped to K1,K2,K3. In NEO GEO mode A,X,Y,Z are mapped to P1,P2,P3,K1 and B,C are mapped to K2,K3. This makes more sense for NEO GEO games when using an arcade stick with a six button layout. 
 
 Switching buttonmaps is done by pressing the following button combinations:
-Six Button mode = START + A
-Neo-Geo mode = START + B
+- Six Button mode = START + A
+- Neo-Geo mode = START + B
 
 # Select Button
 

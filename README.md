@@ -11,29 +11,29 @@ The upload the .ino file to an Arduino Uno or similar compatible device and conn
   These values are hard coded and cannot be easily changed. This is because the code uses direct port maniplulation to set the button outputs to open drain when not pressed. This is a safety feature.
 
 Button Outputs
-*UP    = 1
-*L     = 2
-R     = 3
-DOWN  = 4
-LEFT  = 5
-RIGHT = 6
-X     = 7
-Y     = 8
-Z     = 9
-A     = 10
-START = 11  
-B     = 13
-C     = 12
+  - UP    = 1
+  - L     = 2
+  - R     = 3
+  - DOWN  = 4
+  - LEFT  = 5
+  - RIGHT = 6
+  - X     = 7
+  - Y     = 8
+  - Z     = 9
+  - A     = 10
+  - START = 11  
+  - B     = 13
+  - C     = 12
 
 Digital Inputs
-*D1    = 14
-D0    = 15
-D3    = 18
-D2    = 19
+- D1    = 14
+- D0    = 15
+- D3    = 18
+- D2    = 19
 
 Select Outputs
-*S0    = 16
-S1    = 17
+- S0    = 16
+- S1    = 17
 
 # Button Map Information
 

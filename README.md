@@ -12,7 +12,7 @@ The upload the .ino file to an Arduino Uno or similar compatible device and conn
 
 Button Outputs
 *UP    = 1
-L     = 2
+*L     = 2
 R     = 3
 DOWN  = 4
 LEFT  = 5

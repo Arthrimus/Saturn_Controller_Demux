@@ -46,11 +46,11 @@ int buttonmap = 0;               // variable for storing which buttonmap is used
 
 
 void setup() {
-  pinMode(D0, INPUT_PULLUP);     // declare pushbutton as inputs with internal pullup.
+  pinMode(D0, INPUT_PULLUP);     // Declares D0-3 as inputs with internal pullup.
   pinMode(D1, INPUT_PULLUP);
   pinMode(D2, INPUT_PULLUP);
   pinMode(D3, INPUT_PULLUP);
-  pinMode(S0, OUTPUT);           // Declare Select Pins as outputs.
+  pinMode(S0, OUTPUT);           // Declares Select Pins as outputs.
   pinMode(S1, OUTPUT);
  }
 

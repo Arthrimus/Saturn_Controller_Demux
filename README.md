@@ -45,7 +45,7 @@ Switching buttonmaps is done by pressing the following button combinations:
 
 # Select Button
 
-Since the Saturn pad doesn't have a select button I have implemented a software solution that can be access by pressing the following button combination: START + Z
+Since the Saturn pad doesn't have a select button I have implemented a software solution that can be access by pressing the following button combination: SELECT = START + Z
 
 # Custom PCB Info.
 

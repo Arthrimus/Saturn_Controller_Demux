@@ -44,9 +44,12 @@ int outputb = 0;                 // variable for storing PORTB output values.
 int outputd = 0;                 // variable for storing PORTD output values.
 int buttonmap = 0;               // variable for storing which buttonmap is used for outputs, 0 = sixbuttonmode.
 int sbcombo = 0;
+int sbfcombo = 0;
 int ngcombo = 0;
 int sbcount = 0;
+int sbfcount = 0;
 int ngcount = 0;
+int combodelay = 80;
 
 void setup() {
   pinMode(D0, INPUT_PULLUP);     // Declares D0-3 as inputs with internal pullup.
@@ -67,7 +70,10 @@ void loop(){                     // The main loop of the program. Calls all of t
 if (buttonmap == 0){             // Stores output data for PORTB and PORTD based on sixbutton map.
   sixbuttonmode();}
 
-if (buttonmap == 1){             // Stores output data for PORTB and PORTD based on neogeo map.
+if (buttonmap == 1){
+  sixbuttonflipped();}
+
+if (buttonmap == 2){             // Stores output data for PORTB and PORTD based on neogeo map.
   neogeomode();}
 
   DDRB = outputb;                // Sets PORTB and PORTD outputs based on inputs and the chosen buttonmap.
@@ -103,6 +109,33 @@ if (X == 1)
   outputd |= 128;    
 }
 
+void sixbuttonflipped(){           // Translates demuxpad data into the sixbutton output map.
+
+if (B == 1)
+  outputb |= 1;                    
+if (C == 1)
+  outputb |= 2; 
+if (X == 1)
+  outputb |= 4;    
+if (ST == 1) 
+  outputb |= 8;
+if (Z == 1)
+  outputb |= 16;
+if (Y == 1) 
+  outputb |= 32;    
+if (UP == 1)
+  outputd |= 2;                    
+if (SL == 1)
+  outputd |= 4;
+if (DN == 1)
+  outputd |= 16;           
+if (LT == 1)   
+  outputd |= 32;
+if (RT == 1)
+  outputd |= 64;
+if (A == 1) 
+  outputd |= 128;    
+}
 
 void neogeomode(){              // Translates demuxpad data into the neogeo output map.
 
@@ -234,22 +267,57 @@ SL = 0;
   } 
 
 void buttoncombos(){
-if (ST == 0){
-  sbcombo = 0;
-  ngcombo = 0;
-}
 if (Z == 1 && (ST == 1)){       // Checks if Z and Start are both pressed
   SL = 1;                       // Sets Select as pressed
   Z = 0;                        // Sets Z as not pressed
   ST = 0;
 }
 
+
 if (ST == 1 && (A == 1 && (sbcombo == 1))){       // Checks if A and Start are both pressed
-  sbcount = sbcount++;
-  buttonmap = 0;                // Sets buttonmap to 0 (sixbuttonmode)              
+  sbcount = (sbcount + 1);
 }
 
-if (ST == 1 && (B == 1)){       // Checks if B and Start are both pressed
-  buttonmap = 1;                // Sets buttonmap to 1 (neogeomode)
-}  
+if (ST == 1 && (B == 1 && (sbfcombo == 1))){       // Checks if B and Start are both pressed
+  sbfcount = (sbfcount + 1);
+}
+
+if (ST == 1 && (C == 1 && (ngcombo == 1))){       // Checks if C and Start are both pressed
+  ngcount = (ngcount + 1);
+}
+
+if (ST == 1 && (A == 1)){       // Checks if A and Start are both pressed
+sbcombo = 1;
+}else{ 
+  sbcombo = 0;
+  sbcount = 0;
+}
+if (ST == 1 && (B == 1)){       // Checks if A and Start are both pressed
+sbfcombo = 1;
+}else{ 
+  sbfcombo = 0;
+  sbfcount = 0;
+}
+
+if (ST == 1 && (C == 1)){      // Checks if B and Start are both pressed
+ngcombo = 1;
+}else{ 
+  ngcombo = 0;
+  ngcount = 0;
+}
+
+if (sbcount >= combodelay){
+sbcount = 0;
+buttonmap = 0;                // Sets buttonmap to 0 (sixbuttonmode)              
+}
+
+if (sbfcount >= combodelay){
+sbfcount = 0;
+buttonmap = 1;                // Sets buttonmap to 0 (sixbuttonmode)              
+}
+
+if (ngcount >= combodelay){
+ngcount = 0;
+buttonmap = 2;                // Sets buttonmap to 1 (neogeomode)
+}
 }

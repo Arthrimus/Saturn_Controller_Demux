@@ -37,11 +37,15 @@ The upload the .ino file to an Arduino Uno or similar compatible device and conn
 
 # Button Map Information
 
-There are currently two buttonmap options. Six Button mode is standard operation. X,Y,Z are mapped to P1,P2,P3 and A,B,C are mapped to K1,K2,K3. In NEO GEO mode A,X,Y,Z are mapped to P1,P2,P3,K1 and B,C are mapped to K2,K3. This makes more sense for NEO GEO games when using an arcade stick with a six button layout. 
+There are currently three buttonmap options. 
+- Six Button Mode: X,Y,Z are mapped to P1,P2,P3 and A,B,C are mapped to K1,K2,K3. 
+- Six Button Flipped: A,B,C are mapped to P1,P2,P3 and X,Y,Z are mapped to K1,K2,K3. 
+- NEO GEO Mode: A,X,Y,Z are mapped to P1,P2,P3,K1 and B,C are mapped to K2,K3. This makes more sense for NEO GEO games when using an arcade stick with a six button layout. 
 
-Switching buttonmaps is done by pressing the following button combinations:
+Switching buttonmaps is done by pressing and holding the following button combinations for 3 seconds:
 - Six Button mode = START + A
-- Neo-Geo mode = START + B
+- Six Button Flipped = START + B
+- Neo-Geo mode = START + C
 
 # Select Button
 

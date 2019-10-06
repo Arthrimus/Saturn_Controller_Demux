@@ -271,12 +271,15 @@ SL = 0;
   } 
 
 void buttoncombos(){
-if (Z == 1 && (ST == 1)){       // Checks if Z and Start are both pressed
+if (X == 1 && (Y == 1 &&(Z == 1 && (ST == 1)))){       // Checks if Z and Start are both pressed
   SL = 1;                       // Sets Select as pressed
-  Z = 0;                        // Sets Z as not pressed
-  ST = 0;
+  ST = 0;                       // Sets Start as pressed
 }
 
+if (L == 1 && (ST == 1 && (R ==1))){       // Checks if Z and Start are both pressed
+  SL = 1;                       // Sets Select as pressed
+  ST = 0;
+}
 
 if (ST == 1 && (A == 1 && (sbcombo == 1))){       // Checks if A and Start are both pressed
   sbcount = (sbcount + 1);
@@ -318,13 +321,13 @@ EEPROM.write(0, 0);
 
 if (sbfcount >= combodelay){
 sbfcount = 0;
-buttonmap = 1;                // Sets buttonmap to 0 (sixbuttonmode)    
+buttonmap = 1;                // Sets buttonmap to 1 (sixbuttonflipped)    
 EEPROM.write(0, 1);          
 }
 
 if (ngcount >= combodelay){
 ngcount = 0;
-buttonmap = 2;                // Sets buttonmap to 1 (neogeomode)
+buttonmap = 2;                // Sets buttonmap to 2 (neogeomode)
 EEPROM.write(0, 2);
 }
 }

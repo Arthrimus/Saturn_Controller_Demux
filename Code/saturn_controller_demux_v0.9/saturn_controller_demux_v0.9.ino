@@ -17,6 +17,8 @@
  *
  */
 
+#include <EEPROM.h>
+
 int UP = 0;                      // Sets up button press values. 0 = button not pressed, 1 = button pressed.
 int DN = 0; 
 int LT = 0;
@@ -50,6 +52,7 @@ int sbcount = 0;
 int sbfcount = 0;
 int ngcount = 0;
 int combodelay = 80;
+int addr = 0;
 
 void setup() {
   pinMode(D0, INPUT_PULLUP);     // Declares D0-3 as inputs with internal pullup.
@@ -58,6 +61,8 @@ void setup() {
   pinMode(D3, INPUT_PULLUP);
   pinMode(S0, OUTPUT);           // Declares Select Pins as outputs.
   pinMode(S1, OUTPUT);
+
+  buttonmap = EEPROM.read(0);
  }
 
 
@@ -65,8 +70,7 @@ void loop(){                     // The main loop of the program. Calls all of t
   
   demuxpad();                    // Runs the pad demux operation to collect buttonpress data from the controller
 
-  buttoncombos();                // Runs the button combination check.
-  
+  buttoncombos();                // Runs the button combination check.  
 if (buttonmap == 0){             // Stores output data for PORTB and PORTD based on sixbutton map.
   sixbuttonmode();}
 
@@ -309,15 +313,18 @@ ngcombo = 1;
 if (sbcount >= combodelay){
 sbcount = 0;
 buttonmap = 0;                // Sets buttonmap to 0 (sixbuttonmode)              
+EEPROM.write(0, 0);
 }
 
 if (sbfcount >= combodelay){
 sbfcount = 0;
-buttonmap = 1;                // Sets buttonmap to 0 (sixbuttonmode)              
+buttonmap = 1;                // Sets buttonmap to 0 (sixbuttonmode)    
+EEPROM.write(0, 1);          
 }
 
 if (ngcount >= combodelay){
 ngcount = 0;
 buttonmap = 2;                // Sets buttonmap to 1 (neogeomode)
+EEPROM.write(0, 2);
 }
 }

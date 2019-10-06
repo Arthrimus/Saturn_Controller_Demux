@@ -47,9 +47,11 @@ Switching buttonmaps is done by pressing and holding the following button combin
 - Six Button Flipped = START + B
 - Neo-Geo mode = START + C
 
+Buttonmap selection is saved to the EEPROM so it stays selected after powering off.
+
 # Select Button
 
-Since the Saturn pad doesn't have a select button I have implemented a software solution that can be access by pressing the following button combination: SELECT = START + Z
+Since the Saturn pad doesn't have a select button I have implemented a software solution that can be access by pressing the following button combination: SELECT = X + Y + Z + START or L + R + START
 
 # Custom PCB Info.
 

@@ -52,7 +52,7 @@ int sbcount = 0;
 int sbfcount = 0;
 int ngcount = 0;
 int combodelay = 80;
-int addr = 0;
+
 
 void setup() {
   pinMode(D0, INPUT_PULLUP);     // Declares D0-3 as inputs with internal pullup.

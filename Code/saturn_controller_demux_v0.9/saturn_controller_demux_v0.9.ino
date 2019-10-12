@@ -271,15 +271,12 @@ SL = 0;
   } 
 
 void buttoncombos(){
-if (X == 1 && (Y == 1 &&(Z == 1 && (ST == 1)))){       // Checks if Z and Start are both pressed
+if (X == 1 && (Y == 1 &&(Z == 1 && (ST == 1))) || (L == 1 && (ST == 1 && (R ==1)))){       // Checks if X,Y,Z and Start or L, R and Start are all pressed
   SL = 1;                       // Sets Select as pressed
   ST = 0;                       // Sets Start as pressed
 }
 
-if (L == 1 && (ST == 1 && (R ==1))){       // Checks if Z and Start are both pressed
-  SL = 1;                       // Sets Select as pressed
-  ST = 0;
-}
+
 
 if (ST == 1 && (A == 1 && (sbcombo == 1))){       // Checks if A and Start are both pressed
   sbcount = (sbcount + 1);

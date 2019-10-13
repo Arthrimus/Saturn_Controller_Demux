@@ -19,7 +19,8 @@
 
 #include <EEPROM.h>
 
-int UP = 0;                      // Sets up button press values. 0 = button not pressed, 1 = button pressed.
+//Buttonpress Status Variables
+int UP = 0;                      // Sets up button press variables.
 int DN = 0; 
 int LT = 0;
 int RT = 0;
@@ -33,39 +34,39 @@ int L = 0;
 int R = 0;
 int ST = 0;   
 int SL = 0;
-
+// Digital Pins (Arduino)
 int D0 = 15;                     // choose the input pins for the digital inputs, follows Arduino pinout.
 int D1 = 14;
 int D2 = 19;
 int D3 = 18;
+// Select Pins (Arduino)
 int S0 = 16;                     // Chooses the output pins for the select outputs, follows Arduino pinout.
 int S1 = 17;  
-
+// General Variables
 int val = 0;                     // variable for reading the pin status (should be zero)
 int outputb = 0;                 // variable for storing PORTB output values.
 int outputd = 0;                 // variable for storing PORTD output values.
 int buttonmap = 0;               // variable for storing which buttonmap is used for outputs, 0 = sixbuttonmode.
-int remapcount = 0;
-int remapcombo = 0;
-int combodelay = 80;
-int NB = 0;
-
+int remapcount = 0;              // variable for storing the count for the button combo timer
+int remapcombo = 0;              // variable for storing the button combo state
+int combodelay = 80;             // variable for storing the number of cycles for the combo timer
+int NB = 0;                      // variable for storing the number of face buttons pressed simultaniously.
 //Buttonmap Values
-int XO = 1;
+int XO = 1;                      // Stores the current output map for each input
 int YO = 2;
 int ZO = 3;
 int AO = 4;
 int BO = 5;
 int CO = 6;
-
-int XP = 0;
+// Previous Buttonpress Variables
+int XP = 0;                     // Stores the previous state of each button
 int YP = 0;
 int ZP = 0;
 int AP = 0;
 int BP = 0;
 int CP = 0;
-
-int XC = 0;
+// Current Buttonpress Variables
+int XC = 0;                    // Stores the current state of each button
 int YC = 0;
 int ZC = 0;
 int AC = 0;
@@ -107,7 +108,7 @@ if (buttonmap == 1){             // Stores output data for PORTB and PORTD based
 
 void setoutputs(){           // Translates demuxpad data into the sixbutton output map.
 
-if (Y == 2 || X == 2 || Z == 2 || A == 2 || B == 2 || C == 2)
+if (Y == 2 || X == 2 || Z == 2 || A == 2 || B == 2 || C == 2) 
   outputb |= 1;                    
 if (Z == 3 || Y == 3 || X == 3 || A == 3 || B == 3 || C == 3)
   outputb |= 2; 
@@ -138,22 +139,24 @@ if (X == 1 || Y == 1 || Z == 1 || A == 1 || B == 1 || C == 1)
 
 void demuxpad(){               // Does the heavy lifting of demuxing the data from the controller into buttonpresses.
 
-outputb = 0;
-outputd = 0;
-UP = 0;
-DN = 0;
-LT = 0;
-RT = 0;
-SL = 0;
-STP = ST;
-ST = 0;
-NB = 0;
-XP = XC;
+// New Previous State 
+XP = XC;                      // new previous state variables = old current state variables
 YP = YC;
 ZP = ZC;
 AP = AC;
 BP = BC;
 CP = CC;
+STP = ST;
+// Reset All Variables
+outputb = 0;                   // Resets Port Maniplulation Variables
+outputd = 0;
+UP = 0;                        // Resets all button state variables
+DN = 0;
+LT = 0;
+RT = 0;
+SL = 0;
+ST = 0;
+NB = 0;
 XC = 0;
 YC = 0;
 ZC = 0;
@@ -280,42 +283,48 @@ buttonmap = 1;                // Sets buttonmap mode to 1
 }
 
 void buttonmapping(){
-if (ST == 1 && (NB == 2)){
- XO = 0;
+if (ST == 1 && (NB == 2)){                        // Checks if the buttonmap combo is still held. 
+ XO = 0;                                          // Resets all buttonmap values to 0
  YO = 0;
  ZO = 0;
  AO = 0;
  BO = 0;
  CO = 0;
-}else{
-if (XC == 1 && (XP == 0 && (NB == 1 && XO < 6))){
-  XO = (XO + 1);
-}else if (XC == 1 && (XP == 0 && (NB == 1 && XO == 6))){
+}else{                                                       // If buttonmap combo is no longer pressed, continue to button mapping mode
+if (XC == 1 && (XP == 0 && (NB == 1))){            // If X is currently pressed, if X was previously not pressed, if only one button (X) is pressed and if XO is less than 6
+  XO = (XO + 1);                                             // If all of the above conditions are met, XO is iterated +1
+}
+if (XO > 6){                                       // If XO is greater than 6, XO is reset to 0
   XO = 0;
-  }
-if (YC == 1 && (YP == 0 && (NB == 1 && YO < 6))){
+}
+if (YC == 1 && (YP == 0 && (NB == 1))){
   YO = (YO + 1);
-}else if (YC == 1 && (YP == 0 && (NB == 1 && YO == 6))){
+}
+if (YO > 6){
   YO = 0;
-  }
-if (ZC == 1 && (ZP == 0 && (NB == 1 && ZO < 6))){
+}
+if (ZC == 1 && (ZP == 0 && (NB == 1))){
   ZO = (ZO + 1);
-}else if (ZC == 1 && (ZP == 0 && (NB == 1 && ZO == 6))){
+}
+if (ZO > 6){
   ZO = 0;
-  }
-if (AC == 1 && (AP == 0 && (NB == 1 && AO < 6))){
+}
+if (AC == 1 && (AP == 0 && (NB == 1))){
   AO = (AO + 1);
-}else if (AC == 1 && (AP == 0 && (NB == 1 && AO == 6))){
+}
+if (AO > 6){
   AO = 0;
-  }
-if (BC == 1 && (BP == 0 && (NB == 1 && BO < 6))){
+}
+if (BC == 1 && (BP == 0 && (NB == 1))){
   BO = (BO + 1);
-}else if (BC == 1 && (BP == 0 && (NB == 1 && BO == 6))){
+}
+if (BO > 6){
   BO = 0;
-  }  
-if (CC == 1 && (CP == 0 && (NB == 1 && CO < 6))){
+}
+if (CC == 1 && (CP == 0 && (NB == 1))){
   CO = (CO + 1);
-}else if (CC == 1 && (CP == 0 && (NB == 1 && CO == 6))){
+}
+if (CO > 6){
   CO = 0;
   }
 if (ST == 1 && (STP == 0)){

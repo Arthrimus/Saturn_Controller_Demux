@@ -7,13 +7,8 @@
  * There are two select lines, four data input lines, and
  * 12 discrete outputs.
  * 
- * This is a much cleaner implementation of the Saturn pad Demux code.
- * Many improvements have been made such as setting outputs as open drain,
- * removing unneccesary if/else statements, implementation of button 
- * combo based functions such as select/coin, buttonmap switching between
- * standard 6 button and Neo Geo 4 button modes. 
  * 
- * Arthrimus August 4 2019
+ * Arthrimus October 13th 2019
  *
  */
 
@@ -265,14 +260,9 @@ if ((NB == 3 && (ST == 1)) || (L == 1 && (ST == 1 && (R ==1)))){       // Checks
   ST = 0;                       // Sets Start as pressed
 }
 
-if (ST == 1 && (NB == 2 && (remapcombo == 1))){       // Checks if B and Start are both pressed
+if (ST == 1 && (NB == 2 && (STP == 1))){        // Checks if Start and 2 buttons are pressed. 
   remapcount = (remapcount + 1);
-}
-
-if (ST == 1 && (NB == 2)){       // Checks if A and Start are both pressed
-remapcombo = 1;
 }else{ 
-  remapcombo = 0;
   remapcount = 0;
 }
 

@@ -53,6 +53,21 @@ Buttonmap selection is saved to the EEPROM so it stays selected after powering o
 
 Since the Saturn pad doesn't have a select button I have implemented a software solution that can be access by pressing the following button combination: SELECT = X + Y + Z + START or L + R + START
 
+# EXPEREMENTAL BUTTON REMAPPING
+
+In the code folder there is an arduino sketch labeled "saturn_controller_demux_remap.ino" This is an experemental firmware that eliminates the normal 3 buttonmap profiles in exchange for full fledged on the fly remapping of A,B,C,X,Y and Z. 
+
+To enter button remapping mode hold any 2 face buttons and START simultaniously for 3 seconds.
+Once in remapping mode press each button the corresponding number of times to achive the desired output based on the list below.
+
+ - X = 1 press
+ - Y = 2 presses
+ - Z = 3 presses
+ - A = 4 presses
+ - B = 5 presses
+ - C = 6 presses
+ - N/A = 7 presses
+
 # Custom PCB Info.
 
 I have designed several prototype PCBs for this project. Currently they are available as Saturn to DB15 adapters. They use the same DB15 pinout as Undamned's DB15 USB Decoders. You can order the most current version from <a href="https://oshpark.com/shared_projects/X40sm7os">Oshpark</a>

@@ -45,7 +45,10 @@ int buttonmap = 0;               // variable for storing which buttonmap is used
 int remapcount = 0;              // variable for storing the count for the button combo timer
 int remapcombo = 0;              // variable for storing the button combo state
 int combodelay = 80;             // variable for storing the number of cycles for the combo timer
+int combodelay2 = 120;           // variable for storing the number of cycles for combo timer 2
+int SLcount = 0;                 // variable for storing the count for the select mode combo timer
 int NB = 0;                      // variable for storing the number of face buttons pressed simultaniously.
+int SLST = 0;
 //Buttonmap Values
 int XO = 1;                      // Stores the current output map for each input
 int YO = 2;
@@ -60,6 +63,8 @@ int ZP = 0;
 int AP = 0;
 int BP = 0;
 int CP = 0;
+int LP = 0;
+int RP = 0;
 // Current Buttonpress Variables
 int XC = 0;                    // Stores the current state of each button
 int YC = 0;
@@ -83,6 +88,7 @@ ZO = EEPROM.read(2);
 AO = EEPROM.read(3);
 BO = EEPROM.read(4);
 CO = EEPROM.read(5);
+SLST = EEPROM.read(6);
 }
 
 
@@ -141,6 +147,8 @@ ZP = ZC;
 AP = AC;
 BP = BC;
 CP = CC;
+LP = L;
+RP = R;
 STP = ST;
 // Reset All Variables
 outputb = 0;                   // Resets Port Maniplulation Variables
@@ -255,9 +263,27 @@ NB = (XC + YC + ZC + AC + BC + CC);
 } 
 
 void buttoncombos(){
-if ((NB == 3 && (ST == 1)) || (L == 1 && (ST == 1 && (R ==1)))){       // Checks if X,Y,Z and Start or L, R and Start are all pressed
+if (ST == 1){
+  SLcount = 0;  
+}
+if ((NB == 3 && (ST == 1)) || (L == 1 && (ST == 1 && (R == 1 && SLST == 0))) || (L == 1 && SLST == 1) || (R == 1 && SLST == 2)){       // Checks if X,Y,Z and Start or L, R and Start are all pressed
   SL = 1;                       // Sets Select as pressed
   ST = 0;                       // Sets Start as pressed
+}
+if (L == 1 && (R == 1 && (LP == 1 && (RP == 1)))){        // Checks if Start and 2 buttons are pressed. 
+  SLcount = (SLcount + 1);
+}else{ 
+  SLcount = 0;
+}
+
+if (SLcount >= combodelay2){{
+SLcount = 0;
+SLST = (SLST + 1);                
+ }
+if (SLST > 2){
+  SLST = 0;
+}
+EEPROM.write(6,SLST);
 }
 
 if (ST == 1 && (NB == 2 && (STP == 1))){        // Checks if Start and 2 buttons are pressed. 

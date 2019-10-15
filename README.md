@@ -53,7 +53,7 @@ Buttonmap selection is saved to the EEPROM so it stays selected after powering o
 
 Since the Saturn pad doesn't have a select button I have implemented a software solution that can be access by pressing the following button combination: SELECT = X + Y + Z + START or L + R + START
 
-# EXPEREMENTAL BUTTON REMAPPING
+# EXPEREMENTAL BUTTON REMAPPING AND AUTOFIRE
 
 In the code folder there is an arduino sketch labeled "saturn_controller_demux_remap.ino" This is an experemental firmware that eliminates the normal 3 buttonmap profiles in exchange for full fledged on the fly remapping of A,B,C,X,Y and Z. 
 
@@ -67,6 +67,18 @@ Once in remapping mode press each button the corresponding number of times to ac
  - B = 5 presses
  - C = 6 presses
  - N/A = 7 presses
+ 
+ In the code folder there is another sketch labaled "saturn_controller_demux_remap_autofire.ino" This is an even more experemental firmware that has the same button remapping system as the above version, but also adds auto fire capability as well. 
+ 
+ To enter auto fire programming mode hold any 1 face button and START simultaniously for 3 seconds. 
+ Once in auto fire programming mode press each button that you want to set as auto fire the number of times that corresponds to the desired speed in the list below.
+ 
+  - 30hz = 1 press
+  - 20hz = 2 presses
+  - 15hz = 3 presses
+  - 12hz = 4 presses
+  - 10hz = 5 presses
+  - 8hz = 6 presses
 
 # Custom PCB Info.
 

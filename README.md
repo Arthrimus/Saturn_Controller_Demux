@@ -73,12 +73,12 @@ Once in remapping mode press each button the corresponding number of times to ac
  To enter auto fire programming mode hold any 1 face button and START simultaniously for 3 seconds. 
  Once in auto fire programming mode press each button that you want to set as auto fire the number of times that corresponds to the desired speed in the list below.
  
-  - 30hz = 1 press
-  - 20hz = 2 presses
-  - 15hz = 3 presses
-  - 12hz = 4 presses
-  - 10hz = 5 presses
-  - 8hz = 6 presses
+  - ~30hz = 1 press
+  - ~20hz = 2 presses
+  - ~15hz = 3 presses
+  - ~12hz = 4 presses
+  - ~7.5hz = 5 presses
+  - ~6hz = 6 presses
 
 # Custom PCB Info.
 

@@ -44,6 +44,15 @@ int outputd = 0;                 // variable for storing PORTD output values.
 int buttonmap = 0;               // variable for storing which buttonmap is used for outputs, 0 = sixbuttonmode.
 int remapcount = 0;              // variable for storing the count for the button combo timer
 int remapcombo = 0;              // variable for storing the button combo state
+int autofire = 0;
+int autofirecombo = 0;
+int autofirecount = 0;
+int autofiretimer1 = 0;
+int autofiretimer2 = 0;
+int autofiretimer3 = 0;
+int autofiretimer4 = 0;
+int autofiretimer5 = 0;
+int autofiretimer6 = 0;
 int combodelay = 160;             // variable for storing the number of cycles for the combo timer
 int combodelay2 = 220;           // variable for storing the number of cycles for combo timer 2
 int SLcount = 0;                 // variable for storing the count for the select mode combo timer
@@ -56,6 +65,13 @@ int ZO = 3;
 int AO = 4;
 int BO = 5;
 int CO = 6;
+//Autofire Values
+int XA = 0;                      // Stores the current autofire setting for each input
+int YA = 0;
+int ZA = 0;
+int AA = 0;
+int BA = 0;
+int CA = 0;
 // Previous Buttonpress Variables
 int XP = 0;                     // Stores the previous state of each button
 int YP = 0;
@@ -89,6 +105,13 @@ AO = EEPROM.read(3);
 BO = EEPROM.read(4);
 CO = EEPROM.read(5);
 SLST = EEPROM.read(6);
+XA = EEPROM.read(7);
+YA = EEPROM.read(8);
+ZA = EEPROM.read(9);
+AA = EEPROM.read(10);
+BA = EEPROM.read(11);
+CA = EEPROM.read(12);
+
 }
 
 
@@ -98,14 +121,64 @@ void loop(){                     // The main loop of the program. Calls all of t
 
   buttoncombos();                // Runs the button combination check.  
 if (buttonmap == 1){             // Stores output data for PORTB and PORTD based on sixbutton map.
+  autofire = 0;
   buttonmapping();
+}else if (autofire == 1){
+  autofiremapping();
 }else{
+  setautofire();
   setoutputs();
   }
   DDRB = outputb;                // Sets PORTB and PORTD outputs based on inputs and the chosen buttonmap.
   DDRD = outputd;
 }
 
+void setautofire(){
+autofiretimer1 = (autofiretimer1 + 1);
+autofiretimer2 = (autofiretimer2 + 1);
+autofiretimer3 = (autofiretimer3 + 1);
+autofiretimer4 = (autofiretimer4 + 1);
+autofiretimer5 = (autofiretimer5 + 1);
+autofiretimer6 = (autofiretimer6 + 1);
+
+if (autofiretimer1 > 1){
+  autofiretimer1 = 0; 
+}
+if (autofiretimer2 > 2){
+  autofiretimer2 = 0; 
+}
+if (autofiretimer3 > 3){
+  autofiretimer3 = 0; 
+}
+if (autofiretimer4 > 4){
+  autofiretimer4 = 0; 
+}
+if (autofiretimer5 > 5){
+  autofiretimer5 = 0; 
+}
+if (autofiretimer6 > 6){
+  autofiretimer6 = 0; 
+}
+
+if ((XA == 1 && autofiretimer1 < 1) || (XA == 2 && autofiretimer2 < 2) || (XA == 3 && autofiretimer3 < 2) || (XA == 4 && autofiretimer4 < 3) || (XA == 5 && autofiretimer5 < 4) || (XA == 6 && autofiretimer6 < 5)){
+    X = 0;     
+  }
+if ((YA == 1 && autofiretimer1 < 1) || (YA == 2 && autofiretimer2 < 2) || (YA == 3 && autofiretimer3 < 2) || (YA == 4 && autofiretimer4 < 3) || (YA == 5 && autofiretimer5 < 4) || (YA == 6 && autofiretimer6 < 5)){
+    Y = 0;     
+  }
+if ((ZA == 1 && autofiretimer1 < 1) || (ZA == 2 && autofiretimer2 < 2) || (ZA == 3 && autofiretimer3 < 2) || (ZA == 4 && autofiretimer4 < 3) || (ZA == 5 && autofiretimer5 < 4) || (ZA == 6 && autofiretimer6 < 5)){
+    Z = 0;     
+  }  
+if ((AA == 1 && autofiretimer1 < 1) || (AA == 2 && autofiretimer2 < 2) || (AA == 3 && autofiretimer3 < 2) || (AA == 4 && autofiretimer4 < 3) || (AA == 5 && autofiretimer5 < 4) || (AA == 6 && autofiretimer6 < 5)){
+    A = 0;     
+  }
+if ((BA == 1 && autofiretimer1 < 1) || (BA == 2 && autofiretimer2 < 2) || (BA == 3 && autofiretimer3 < 2) || (BA == 4 && autofiretimer4 < 3) || (BA == 5 && autofiretimer5 < 4) || (BA == 6 && autofiretimer6 < 5)){
+    B = 0;     
+  }
+if ((CA == 1 && autofiretimer1 < 1) || (CA == 2 && autofiretimer2 < 2) || (CA == 3 && autofiretimer3 < 2) || (CA == 4 && autofiretimer4 < 3) || (CA == 5 && autofiretimer5 < 4) || (CA == 6 && autofiretimer6 < 5)){
+    C = 0;     
+  }
+}
 
 void setoutputs(){           // Translates demuxpad data into the sixbutton output map.
 
@@ -134,8 +207,6 @@ if (RT == 1)
 if (X == 1 || Y == 1 || Z == 1 || A == 1 || B == 1 || C == 1) 
   outputd |= 128;    
 }
-
-
 
 
 void demuxpad(){               // Does the heavy lifting of demuxing the data from the controller into buttonpresses.
@@ -296,6 +367,17 @@ if (remapcount >= combodelay){
 remapcount = 0;
 buttonmap = 1;                // Sets buttonmap mode to 1 
  }
+
+if (ST == 1 && (NB == 1 && (STP == 1))){        // Checks if Start and 2 buttons are pressed. 
+  autofirecount = (autofirecount + 1);
+}else{ 
+  autofirecount = 0;
+}
+
+if (autofirecount >= combodelay){
+autofirecount = 0;
+autofire = 1;                // Sets autofire mode to 1 
+ }
 }
 
 void buttonmapping(){
@@ -351,6 +433,63 @@ if (ST == 1 && (STP == 0)){
     EEPROM.write(3,AO);
     EEPROM.write(4,BO);
     EEPROM.write(5,CO);
+    
+  } 
+ }
+}
+void autofiremapping(){
+if (ST == 1 && (NB == 1)){                        // Checks if the buttonmap combo is still held. 
+ XA = 0;                                          // Resets all buttonmap values to 0
+ YA = 0;
+ ZA = 0;
+ AA = 0;
+ BA = 0;
+ CA = 0;
+}else{                                                       // If buttonmap combo is no longer pressed, continue to button mapping mode
+if (XC == 1 && (XP == 0 && (NB == 1))){            // If X is currently pressed, if X was previously not pressed, if only one button (X) is pressed and if XO is less than 6
+  XA = (XA + 1);                                             // If all of the above conditions are met, XO is iterated +1
+}
+if (XA > 6){                                       // If XO is greater than 6, XO is reset to 0
+  XA = 0;
+}
+if (YC == 1 && (YP == 0 && (NB == 1))){
+  YA = (YA + 1);
+}
+if (YA > 6){
+  YA = 0;
+}
+if (ZC == 1 && (ZP == 0 && (NB == 1))){
+  ZA = (ZA + 1);
+}
+if (ZA > 6){
+  ZA = 0;
+}
+if (AC == 1 && (AP == 0 && (NB == 1))){
+  AA = (AA + 1);
+}
+if (AA > 6){
+  AA = 0;
+}
+if (BC == 1 && (BP == 0 && (NB == 1))){
+  BA = (BA + 1);
+}
+if (BA > 6){
+  BA = 0;
+}
+if (CC == 1 && (CP == 0 && (NB == 1))){
+  CA = (CA + 1);
+}
+if (CA > 6){
+  CA = 0;
+  }
+if (ST == 1 && (STP == 0)){
+    autofire = 0;
+    EEPROM.write(7,XA);
+    EEPROM.write(8,YA);
+    EEPROM.write(9,ZA);
+    EEPROM.write(10,AA);
+    EEPROM.write(11,BA);
+    EEPROM.write(12,CA);
     
   } 
  }

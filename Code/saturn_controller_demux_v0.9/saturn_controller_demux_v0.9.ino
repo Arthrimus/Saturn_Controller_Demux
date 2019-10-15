@@ -51,7 +51,7 @@ int ngcombo = 0;
 int sbcount = 0;
 int sbfcount = 0;
 int ngcount = 0;
-int combodelay = 80;
+int combodelay = 160;
 
 
 void setup() {
@@ -245,7 +245,7 @@ SL = 0;
   L = 1;                     
   }                            // This is the end of the third bit of the demuxer. 
    {                           // This is the start of the fourth bit of the demuxer.
-  delay(17);
+  delay(13);
   digitalWrite(S1, HIGH);      // Sets the select lines S0 LOW, S1 HIGH
   digitalWrite(S0, LOW);   
 

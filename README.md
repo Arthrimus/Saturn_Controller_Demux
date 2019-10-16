@@ -4,7 +4,7 @@ This is an Arduino sketch for demultiplexing Saturn controller inputs to discret
 
 # Instructions
 
-The upload the .ino file to an Arduino Uno or similar compatible device and connect the I/O pins according to the layout described in the .ino file. If you wish to remap the buttons you can modify the pin selections in the file to suit your needs. There are 2 versions uploaded here v0.1 and v0.6. V0.1 is configured correctly to match the pinout of my original V0.1-V0.3 boards. I reworked the board layout at v0.4 onward so if you have board revision V0.4 or newer you should use the V0.6 code.
+The upload the .ino file to an Arduino Uno or similar compatible device and connect the I/O pins according to the pinout below.
 
 # Pinout (Arduino pin labels) 
 
@@ -12,8 +12,7 @@ The upload the .ino file to an Arduino Uno or similar compatible device and conn
 
 **Button Outputs**
   - UP    = 1
-  - L     = 2
-  - R     = 3
+  - Select = 2
   - DOWN  = 4
   - LEFT  = 5
   - RIGHT = 6
@@ -79,6 +78,8 @@ Once in remapping mode press each button the corresponding number of times to ac
   - ~12hz = 4 presses
   - ~7.5hz = 5 presses
   - ~6hz = 6 presses
+  
+Button mapping and auto fire settings are saved in the EEPROM so they will persist after power cycling the AVR.
 
 # Custom PCB Info.
 

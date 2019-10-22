@@ -48,9 +48,18 @@ Switching buttonmaps is done by pressing and holding the following button combin
 
 Buttonmap selection is saved to the EEPROM so it stays selected after powering off.
 
-# Select Button
+# Coin Button
 
-Since the Saturn pad doesn't have a select button I have implemented a software solution that can be access by pressing the following button combination: SELECT = X + Y + Z + START or L + R + START
+Since the Saturn pad doesn't have a select button I have implemented a software solution for adding coins. There are 3 different coin mappings that can be toggled by holding L & R for 5 seconds. Simply toggle through them until you find the one you like best. The options are as follows
+
+ - L + R + START = COIN
+ - L = COIN
+ - R = COIN
+
+I've also added a combination that doesn't use the shoulder buttons since some users may not have access to them (custom arcade stick users for example) 
+COIN = X + Y + Z + START
+
+
 
 # EXPEREMENTAL BUTTON REMAPPING AND AUTOFIRE
 

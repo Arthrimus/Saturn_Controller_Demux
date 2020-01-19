@@ -90,6 +90,9 @@ Once in remapping mode press each button the corresponding number of times to ac
   
 Button mapping and auto fire settings are saved in the EEPROM so they will persist after power cycling the AVR.
 
+# Retro-Bit Fix
+I've added a special branch of the firmware implementing a number of timing changes to get Retro-Bit Wireless Saturn controllers working with these adapters. These changes have not been committed to the main branch of the firmware because they have also somehow broke Brook Retro Board compatibility. Until I figure out the source of that problem this will remain a separate branch of the firmware. 
+
 # Custom PCB Info.
 
 I have designed several prototype PCBs for this project. Currently they are available as Saturn to DB15 adapters. They use the same DB15 pinout as Undamned's DB15 USB Decoders. You can order the most current version from <a href="https://oshpark.com/shared_projects/X40sm7os">Oshpark</a>

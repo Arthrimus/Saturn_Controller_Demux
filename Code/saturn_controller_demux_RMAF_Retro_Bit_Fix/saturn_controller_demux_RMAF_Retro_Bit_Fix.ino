@@ -385,7 +385,7 @@ if (val0 == HIGH || val1 == HIGH){
 
 void detectpad(){
   PORTC = B11111011;
-  delayMicroseconds(40);
+  delayMicroseconds(80);
   PORTC = B1111111;
   delayMicroseconds(2);
   val3 = digitalReadFast(D3);

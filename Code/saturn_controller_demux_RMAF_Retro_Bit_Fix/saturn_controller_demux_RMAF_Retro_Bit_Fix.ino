@@ -139,8 +139,6 @@ void setup()
 
 void loop()                     // The main loop of the program. Calls all of the other loops as needed.
 {
-	if (cdetect == 0)
-	{detectpad();}
 	if (cdetect == 1)
 	{
 		demuxpad();                    // Runs the pad demux operation to collect buttonpress data from the controller
@@ -158,6 +156,8 @@ void loop()                     // The main loop of the program. Calls all of th
 			setoutputs();
 		}
 	}
+	else
+	{detectpad();}
 	
 	DDRB = outputb;                // Sets PORTB and PORTD outputs based on inputs and the chosen buttonmap.
 	DDRD = outputd;

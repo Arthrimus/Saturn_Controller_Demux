@@ -65,7 +65,7 @@ int combodelay = 160;            // variable for storing the number of cycles fo
 int combodelay2 = 220;           // variable for storing the number of cycles for combo timer 2
 int SLcount = 0;                 // variable for storing the count for the select mode combo timer
 int NB = 0;                      // variable for storing the number of face buttons pressed simultaniously.
-int SLST = 0;
+int SLST = 0;                    // Settings for Coin/Select button 0 = L + R + Start, 1 = L, 2 = R
 int cdetect = 0;
 
 //Buttonmap Values
@@ -237,7 +237,6 @@ void setoutputs()           // Translates demuxpad data into the sixbutton outpu
 	if (X == 1 || Y == 1 || Z == 1 || A == 1 || B == 1 || C == 1) 
 	{outputd |= 128;}
 }
-
 
 void demuxpad()               // Does the heavy lifting of demuxing the data from the controller into buttonpresses.
 {
@@ -448,11 +447,22 @@ void buttoncombos()
 	if (ST == 1)
 	{SLcount = 0;}
 
-	if ((NB == 3 && (ST == 1)) || (L == 1 && (ST == 1 && (R == 1 && SLST == 0))) || (L == 1 && SLST == 1) || (R == 1 && SLST == 2))       // Checks if X,Y,Z and Start or L, R and Start are all pressed
+	// Checks if X,Y,Z and Start or L, R and Start are all pressed
+	if 	
+	(
+		(NB == 3 && ST == 1 && XC == 1 && YC == 1 && ZC == 1) || // Checks if X,Y,Z (and only those face buttons) and Start are pressed
+		(L == 1 && (ST == 1 && (R == 1 && SLST == 0) )) // Checks if L + R + Start are pressed and Coin/SLST setting 0 is active (L + R + Start)			
+	)
 	{
-		SL = 1;                       // Sets Select as pressed
-		ST = 0;                       // Sets Start as pressed
+		SL = 1;        // Sets Select as pressed
+		ST = 0;        // Sets Start as unpressed
 	}
+	else if	
+	(
+		(L == 1 && SLST == 1) || // Checks if L and Coin/SLST setting 1 (L)
+		(R == 1 && SLST == 2)    // Checks if R and Coin/SLST setting 2 (R)
+	)	
+	{SL = 1;} // Sets Select as pressed
 
 	if (L == 1 && (R == 1 && (LP == 1 && (RP == 1))))        // Checks if Start and 2 buttons are pressed. 
 	{SLcount = (SLcount + 1);}
